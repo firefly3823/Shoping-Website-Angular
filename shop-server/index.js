@@ -6,7 +6,7 @@ const routes = require('./Routes/router')
 const shop_Server = exp()
 shop_Server.use(cors())
 shop_Server.use(exp.json())
-// shop_Server.use(routes)
+shop_Server.use(routes)
 const PORT = 3000 || process.env.PORT
 
 shop_Server.listen(PORT,()=>{
