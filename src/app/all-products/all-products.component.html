@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators"  class="carousel slide">
+<div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
             aria-current="true" aria-label="Slide 1"></button>
@@ -9,17 +9,19 @@
     </div>
     <div style="height: 50vh;" class="carousel-inner">
         <div class="carousel-item active">
-            <img class="img-fluid" style="" src="https://images.pexels.com/photos/3091202/pexels-photo-3091202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="d-block w-100"  alt="...">
+            <img class="img-fluid" style=""
+                src="https://images.pexels.com/photos/3091202/pexels-photo-3091202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
             <img class="img-fluid" style=""
                 src="https://images.pexels.com/photos/1634278/pexels-photo-1634278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="d-block w-100"  alt="...">
+                class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
             <img class="img-fluid" style=""
                 src="https://images.pexels.com/photos/5709656/pexels-photo-5709656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="d-block w-100"  alt="...">
+                class="d-block w-100" alt="...">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -37,12 +39,35 @@
 
 <div class="allproducts container-fluid mt-5">
     <div class="row ">
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-4 mb-3 col-sm-6" *ngFor="let product of allProduct; let num=index">
             <div class="card h-100">
                 <!-- Sale badge-->
                 <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                 <!-- Product image-->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+
+                <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+                    <div class="carousel-inner" *ngFor="let image of product.images; let i=index">
+
+
+                        <div class="carousel-item active"   [ngClass]="{'active carousel-item ': i==0}">
+                            <img class="card-img-top" [src]="image" alt="..." />
+                        </div>
+
+
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
@@ -63,13 +88,11 @@
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view">View</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view/1">View</a></div>
                 </div>
             </div>
-            </div>
-            
-
         </div>
+
+
     </div>
-
-
+</div>

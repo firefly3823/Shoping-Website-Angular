@@ -14,5 +14,5 @@ shop_Server.listen(PORT,()=>{
 })
 
 shop_Server.get('/',(req,res)=>{
-    res.status(200).json(`<p>Shop Server is Online</p>`)
+    res.status(200).send("<p style='color:red'>Shop Server is Online</p>")
 })
