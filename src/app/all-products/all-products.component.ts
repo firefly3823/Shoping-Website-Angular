@@ -9,27 +9,27 @@ import { ToastServiceService } from '../services/toast-service.service';
 })
 export class AllProductsComponent implements OnInit {
   allProduct: any = [];
-  constructor(private api: ApiService,private toast:ToastServiceService) {}
+  constructor(private api: ApiService, private toast: ToastServiceService) {}
   ngOnInit(): void {
-    this.api.getAllProduct().subscribe((res:any)=>{
-      this.allProduct = res
-      console.log(res);
+    this.api.getAllProduct().subscribe((res: any) => {
+      this.allProduct = res;
+      // console.log(res);
     });
   }
 
-  addtoWishList() {
+  addtoWishList(product: any) {
     if (sessionStorage.getItem('token')) {
       this.toast.success('Add Item to wishlist');
     } else {
-      alert('Please Login');
+      this.toast.error('Please Login');
     }
   }
 
-  addtoCart() {
+  addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
       this.toast.success('Add Item to wishlist');
     } else {
-      alert('Please Login');
+      this.toast.error('Please Login');
     }
   }
 }

@@ -9,8 +9,8 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getAllProduct() {
-    return this.http.get(`${this.SERVER_URL}/product/all`);
-    // return this.http.get(`https://api.escuelajs.co/api/v1/products`);
+    // return this.http.get(`${this.SERVER_URL}/product/all`);
+    return this.http.get(`https://api.escuelajs.co/api/v1/products`);
   }
 
   appendTokenToHeader(){

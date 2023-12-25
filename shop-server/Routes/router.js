@@ -5,6 +5,7 @@ const router = new express.Router()
 //get all product
 router.get('/product/all', productController.getAllProducts)
 
+
 //register
 router.post('/user/register', userController.registerController)
 
