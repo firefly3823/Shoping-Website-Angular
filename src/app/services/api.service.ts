@@ -27,14 +27,12 @@ export class ApiService {
     if (token) {
       headers = headers.append('Authorization', `Bearer ${token}`);
     }
+    // console.log({headers});
     return { headers };
   }
-
   addToWishlistAPI(id: any) {
     return this.http.get(
-      `${this.SERVER_URL}/wishlist/add/${id}`,
-      this.appendTokenToHeader()
-    );
+      `${this.SERVER_URL}/wishlist/add/${id}`,this.appendTokenToHeader());
   }
 
   getProduct(id: any) {

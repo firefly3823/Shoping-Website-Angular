@@ -4,9 +4,9 @@ const wishlists = require('../Models/wishlistModel')
 
 exports.addToWishlistController = async (req,res)=>{
     //get product
-
     const {id} = req.params
     const userId = req.payload
+    console.log(req);
     try{
         const existingProduct = await wishlists.findOne({productId:id,userId})
         if (existingProduct) {

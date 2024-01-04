@@ -19,7 +19,14 @@ export class AllProductsComponent implements OnInit {
 
   addtoWishList(product: any) {
     if (sessionStorage.getItem('token')) {
-      this.toast.success('Add Item to wishlist');
+      this.api.addToWishlistAPI(product.id).subscribe({
+        next:(res:any)=>{
+          this.toast.success('Added Item to wishlist');
+        },
+        error:(err)=>{
+          console.log(err.error);
+        }
+      })  
     } else {
       this.toast.error('Please Login');
     }
@@ -27,7 +34,7 @@ export class AllProductsComponent implements OnInit {
 
   addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
-      this.toast.success('Add Item to wishlist');
+      this.toast.success('Added Item to Cart');
     } else {
       this.toast.error('Please Login');
     }
