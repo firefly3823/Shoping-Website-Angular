@@ -3,19 +3,25 @@
         <div class="card-body ">
             <h5 class="card-title text-center fw-bolder fs-1">LOGIN</h5>
 
-            <form class="justify-content-center d-flex flex-column align-items-center">
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="justify-content-center d-flex flex-column align-items-center">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="email" formControlName="email" class="form-control" name="email" aria-describedby="emailHelp">
+                    <div *ngIf="this.loginForm.get('email')?.errors&&loginForm.get('email')?.touched"
+                        class="fw-lighter fs-6 text-primary">Invalid Email
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" formControlName="password" class="form-control" name="password">
+                    <div *ngIf="this.loginForm.get('password')?.errors&&loginForm.get('password')?.touched"
+                        class="fw-lighter fs-6 text-primary">Invalid password
+                    </div>
                 </div>
                 <div class="d-flex justify-content-evenly w-100">
-                    <div><button routerLink="/user/register" type="submit" class="btn btn-outline-dark mt-auto">Sign Up</button>
+                    <div><button routerLink="/user/register" class="btn btn-outline-dark mt-auto">Sign Up</button>
                     </div>
-                    <div><a  type="submit" class="btn btn-outline-dark mt-auto">Login</a>
+                    <div><button  type="submit"  class="btn btn-outline-dark mt-auto">Login</button>
                     </div>
                 </div>
             </form>

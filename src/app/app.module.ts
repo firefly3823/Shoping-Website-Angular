@@ -16,7 +16,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +39,7 @@ import { FormGroup, FormsModule } from '@angular/forms';
     CommonModule,
     ToastrModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule
 
   
   ],

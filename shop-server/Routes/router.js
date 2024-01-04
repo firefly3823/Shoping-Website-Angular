@@ -12,5 +12,7 @@ router.post('/user/register', userController.registerController)
 //Login
 router.post('/user/login', userController.loginController)
 
+//product details
+router.get('/product/get/:id',productController.getProductDetails)
 
 module.exports = router
