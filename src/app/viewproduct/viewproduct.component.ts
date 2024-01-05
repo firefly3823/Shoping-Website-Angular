@@ -9,34 +9,45 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./viewproduct.component.css'],
 })
 export class ViewproductComponent implements OnInit {
+  product: any = {};
 
-  product:any = {}
-
-  constructor(private toast:ToastServiceService,private route:ActivatedRoute,private api:ApiService){}
+  constructor(
+    private toast: ToastServiceService,
+    private route: ActivatedRoute,
+    private api: ApiService
+  ) {}
 
   ngOnInit(): void {
-      this.route.params.subscribe((res:any)=>{
-        // console.log(res);
-        const {id} = res
-        //get product of particular ID
-        this.getProductDetail(id)
-      })
+    this.route.params.subscribe((res: any) => {
+      // console.log(res);
+      const { id } = res;
+      //get product of particular ID
+      this.getProductDetail(id);
+    });
   }
-  getProductDetail(id:any){
+  getProductDetail(id: any) {
     this.api.getProduct(id).subscribe({
-      next:(res:any)=>{
-        this.product = res
+      next: (res: any) => {
+        this.product = res;
         console.log(this.product);
       },
-      error:(err:any)=>{
+      error: (err: any) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
   addtoWishList(product: any) {
     if (sessionStorage.getItem('token')) {
-      this.toast.success('Add Item to wishlist');
+      this.api.addToWishlistAPI(product).subscribe({
+        next: (res: any) => {
+          this.toast.success(`${res.title} Added Item to wishlist`);
+          this.api.getWishcount();
+        },
+        error: (err) => {
+          this.toast.warning(err.error);
+        },
+      });
     } else {
       this.toast.error('Please Login');
     }
