@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastServiceService } from '../services/toast-service.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   currentUserName: string = '';
-  constructor(private toast: ToastServiceService, private router: Router) {}
+  wishlistCount:number = 0
+  constructor(private toast: ToastServiceService, private router: Router, private api:ApiService) {}
   ngOnInit(): void {
     if (sessionStorage.getItem('username')) {
       // this.currentUserName = sessionStorage.getItem('username')?.split("")[0] || '';
       this.currentUserName = sessionStorage.getItem('username') || '';
+      this.api.wishlistCount.subscribe((res:any)=>{
+        this.wishlistCount = res
+      })
     } else {
       this.currentUserName = '';
     }

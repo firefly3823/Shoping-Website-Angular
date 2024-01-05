@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,12 @@ import { Injectable } from '@angular/core';
 export class ApiService {
   SERVER_URL = 'http://localhost:3000';
   AltServer_url = 'https://api.escuelajs.co/api/v1/products';
-  constructor(private http: HttpClient) {}
+  wishlistCount = new BehaviorSubject(0)
+  constructor(private http: HttpClient) {
+    if(sessionStorage.getItem('token')){
+      this.getWishcount()
+    }
+  }
 
   getAllProduct() {
     // return this.http.get(`${this.SERVER_URL}/product/all`);
@@ -30,12 +36,22 @@ export class ApiService {
     // console.log({headers});
     return { headers };
   }
-  addToWishlistAPI(id: any) {
-    return this.http.get(
-      `${this.SERVER_URL}/wishlist/add/${id}`,this.appendTokenToHeader());
+  addToWishlistAPI(product:any) {
+    return this.http.post(
+      `${this.SERVER_URL}/wishlist/add`,product,this.appendTokenToHeader());
   }
 
   getProduct(id: any) {
     return this.http.get(`${this.AltServer_url}/${id}`); 
   }
+
+  getwishlist(){
+    return this.http.get(`${this.SERVER_URL}/wishlist/get`,this.appendTokenToHeader())
+  }
+  getWishcount(){
+    this.getwishlist().subscribe((res:any)=>{
+      this.wishlistCount.next(res.length)
+    })
+  }
+
 }

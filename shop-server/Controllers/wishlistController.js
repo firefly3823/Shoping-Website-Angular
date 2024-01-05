@@ -2,22 +2,35 @@ const wishlists = require('../Models/wishlistModel')
 
 //add to wishlist
 
-exports.addToWishlistController = async (req,res)=>{
+exports.addToWishlistController = async (req, res) => {
     //get product
-    const {id} = req.params
     const userId = req.payload
-    console.log(req);
-    try{
-        const existingProduct = await wishlists.findOne({productId:id,userId})
+    const { id, title, price, description, images, category } = req.body
+    console.log(id, title, price, description, images)
+    try {
+        const existingProduct = await wishlists.findOne({ id, userId })
         if (existingProduct) {
             res.status(406).json("Already in wishlist")
         } else {
             const newProduct = new wishlists({
-                productId:id,userId
+                id, title, price, description, images, userId
             })
             await newProduct.save()
+            res.status(200).json(newProduct)
         }
-    } catch(err){
+    } catch (err) {
+        res.status(401).json(err)
+    }
+}
+
+// get wishlists
+
+exports.getWishllistController = async (req,res)=>{
+    const userId = req.payload
+    try{
+        const allwish = await wishlists.find({userId})
+        res.status(200).json(allwish)
+    }catch(err){
         res.status(401).json(err)
     }
 }

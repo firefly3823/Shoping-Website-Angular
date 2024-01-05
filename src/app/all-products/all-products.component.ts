@@ -18,20 +18,21 @@ export class AllProductsComponent implements OnInit {
   }
 
   addtoWishList(product: any) {
+    
     if (sessionStorage.getItem('token')) {
-      this.api.addToWishlistAPI(product.id).subscribe({
+      this.api.addToWishlistAPI(product).subscribe({
         next:(res:any)=>{
-          this.toast.success('Added Item to wishlist');
+          this.toast.success(`${res.title} Added Item to wishlist`);
+          this.api.getWishcount()
         },
         error:(err)=>{
-          console.log(err.error);
+          this.toast.warning(err.error);
         }
       })  
     } else {
       this.toast.error('Please Login');
     }
   }
-
   addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
       this.toast.success('Added Item to Cart');

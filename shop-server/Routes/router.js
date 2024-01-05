@@ -19,6 +19,9 @@ router.post('/user/login', userController.loginController)
 router.get('/product/get/:id',productController.getProductDetails)
 
 // wishlist
-router.get('/wishlist/add/:id',jwtMiddleware,wishListController.addToWishlistController)
+router.post('/wishlist/add',jwtMiddleware,wishListController.addToWishlistController)
+
+//get wish
+router.get('/wishlist/get',jwtMiddleware,wishListController.getWishllistController)
 
 module.exports = router
