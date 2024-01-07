@@ -24,4 +24,7 @@ router.post('/wishlist/add',jwtMiddleware,wishListController.addToWishlistContro
 //get wish
 router.get('/wishlist/get',jwtMiddleware,wishListController.getWishllistController)
 
+// remove wishlist
+router.delete('/wishlist/remove/:id', jwtMiddleware, wishListController.removeWishlistContorller)
+
 module.exports = router

@@ -54,4 +54,11 @@ export class ApiService {
     })
   }
 
+  deleteWishlist(id:any){
+    return this.http.delete(
+      `${this.SERVER_URL}/wishlist/remove/${id}`,
+      this.appendTokenToHeader()
+    );
+  }
+
 }

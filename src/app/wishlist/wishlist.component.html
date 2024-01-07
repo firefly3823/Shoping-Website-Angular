@@ -1,5 +1,7 @@
 <app-header></app-header>
-<div style="height: 80vh;" class="container-fluid  d-flex flex-column align-items-center justify-content-center">
+<h4 class="fw-bolder text-center">WISHLISTS</h4>
+<div *ngIf="allProduct.length===0" style="height: 80vh;"
+    class="container-fluid  d-flex flex-column align-items-center justify-content-center">
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-empty" width="200" height="200"
         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round">
@@ -12,19 +14,42 @@
     <h3>NO PRODUCTS... MAKE SOME WISH...!!!</h3>
     <div><a routerLink="/allproduct" class="btn btn-secondary">ADD PRODUCTS</a></div>
 </div>
-<div class="allproducts container-fluid mt-5">
+<div class="allproducts container-fluid mt-2">
     <div class="row ">
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-4 mb-3 col-sm-6" *ngFor="let product of allProduct; let num=index">
             <div class="card h-100">
                 <!-- Sale badge-->
                 <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                 <!-- Product image-->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+
+                <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                    <div class="carousel-inner">
+                        <div *ngFor="let image of product.images;let i=index" class="carousel-item"
+                            [ngClass]="{'carousel-item': i!=0}">
+                            <img routerLink="/view/{{product.id}}" class="card-img-top" [src]="image&& image"
+                                alt="..." />
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
+
+
                 <!-- Product details-->
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">Special Item</h5>
+                        <h5 class="fw-bolder">{{product.title}}</h5>
                         <!-- Product reviews-->
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="bi-star-fill"></div>
@@ -34,14 +59,31 @@
                             <div class="bi-star-fill"></div>
                         </div>
                         <!-- Product price-->
-                        <span class="text-muted text-decoration-line-through">$20.00</span>
-                        $18.00
+                        Price :
+                        ${{product.price}}
                     </div>
                 </div>
                 <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view">remove</a></div>
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/view">Cart</a></div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-around">
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="removeItem(product._id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-off"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 3l18 18" />
+                                <path
+                                    d="M19.5 12.572l-1.5 1.428m-2 2l-4 4l-7.5 -7.428a5 5 0 0 1 -1.288 -5.068a4.976 4.976 0 0 1 1.788 -2.504m3 -1c1.56 0 3.05 .727 4 2a5 5 0 1 1 7.5 6.572" />
+                            </svg></a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-bag"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
+                                <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+                            </svg>
+                        </a></div>
                 </div>
             </div>
         </div>
