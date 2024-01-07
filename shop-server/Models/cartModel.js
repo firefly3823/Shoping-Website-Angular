@@ -18,6 +18,14 @@ const cartSchema = new mongoose.Schema({
     images: {
         type: [String],
     },
+    quantity:{
+        type:Number,
+        required:true
+    },
+    grandTotal:{
+        type:Number,
+        required:true
+    },
     userId: {
         type: String,
         required: true

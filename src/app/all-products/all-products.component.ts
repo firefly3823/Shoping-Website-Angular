@@ -35,9 +35,20 @@ export class AllProductsComponent implements OnInit {
   }
   addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
-      this.toast.success('Added Item to Cart');
+      Object.assign(product,{quantity:1})
+      this.api.addtoCart(product).subscribe({
+        next:(res:any)=>{
+                this.toast.success(res);
+        },
+        error:(err)=>{
+          console.log(err)
+        }
+      })
+
     } else {
       this.toast.error('Please Login');
     }
   }
+
+
 }

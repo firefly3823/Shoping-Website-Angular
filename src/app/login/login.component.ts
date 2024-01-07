@@ -27,6 +27,7 @@ export class LoginComponent {
           sessionStorage.setItem('username', res.existingUser.username);
           sessionStorage.setItem('token',res.token)
           this.api.getWishcount()
+          this.api.getCartCount()
           this.loginForm.reset();
           this.router.navigateByUrl('');
         },

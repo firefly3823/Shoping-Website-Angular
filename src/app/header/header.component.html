@@ -18,7 +18,7 @@
                     <button *ngIf="!currentUserName" routerLink="user/login" class="btn btn-secondary">Cart</button>
                     <button *ngIf="currentUserName" routerLink="user/cart" class="btn btn-secondary position-relative">Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                        99+
+                        {{cartCount}}
                     </span>
                 </button>
                 </li>

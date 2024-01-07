@@ -1,6 +1,7 @@
 const express = require('express')
 const productController = require('../Controllers/productController')
 const userController = require('../Controllers/userController')
+const cartController = require('../Controllers/cartController')
 const jwtMiddleware = require('../Middlewares/jwtMiddleware')
 const wishListController = require('../Controllers/wishlistController')
 
@@ -26,5 +27,11 @@ router.get('/wishlist/get',jwtMiddleware,wishListController.getWishllistControll
 
 // remove wishlist
 router.delete('/wishlist/remove/:id', jwtMiddleware, wishListController.removeWishlistContorller)
+
+//add to cart
+router.post('/cart/add',jwtMiddleware,cartController.addtoCartControl)
+
+//get carts
+router.get('/cart/get',jwtMiddleware,cartController.getCartControl)
 
 module.exports = router

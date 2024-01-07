@@ -8,10 +8,12 @@ import { BehaviorSubject } from 'rxjs';
 export class ApiService {
   SERVER_URL = 'http://localhost:3000';
   AltServer_url = 'https://api.escuelajs.co/api/v1/products';
-  wishlistCount = new BehaviorSubject(0)
+  wishlistCount = new BehaviorSubject(0);
+  CartCount = new BehaviorSubject(0);
   constructor(private http: HttpClient) {
-    if(sessionStorage.getItem('token')){
-      this.getWishcount()
+    if (sessionStorage.getItem('token')) {
+      this.getWishcount();
+      this.getCartCount();
     }
   }
 
@@ -36,29 +38,54 @@ export class ApiService {
     // console.log({headers});
     return { headers };
   }
-  addToWishlistAPI(product:any) {
+  addToWishlistAPI(product: any) {
     return this.http.post(
-      `${this.SERVER_URL}/wishlist/add`,product,this.appendTokenToHeader());
+      `${this.SERVER_URL}/wishlist/add`,
+      product,
+      this.appendTokenToHeader()
+    );
   }
 
   getProduct(id: any) {
-    return this.http.get(`${this.AltServer_url}/${id}`); 
+    return this.http.get(`${this.AltServer_url}/${id}`);
   }
 
-  getwishlist(){
-    return this.http.get(`${this.SERVER_URL}/wishlist/get`,this.appendTokenToHeader())
+  getwishlist() {
+    return this.http.get(
+      `${this.SERVER_URL}/wishlist/get`,
+      this.appendTokenToHeader()
+    );
   }
-  getWishcount(){
-    this.getwishlist().subscribe((res:any)=>{
-      this.wishlistCount.next(res.length)
-    })
+  getWishcount() {
+    this.getwishlist().subscribe((res: any) => {
+      this.wishlistCount.next(res.length);
+    });
   }
 
-  deleteWishlist(id:any){
+  deleteWishlist(id: any) {
     return this.http.delete(
       `${this.SERVER_URL}/wishlist/remove/${id}`,
       this.appendTokenToHeader()
     );
   }
 
+  addtoCart(product: any) {
+    return this.http.post(
+      `${this.SERVER_URL}/cart/add`,
+      product,
+      this.appendTokenToHeader()
+    );
+  }
+
+  getCartAPI() {
+    return this.http.get(
+      `${this.SERVER_URL}/cart/get`,
+      this.appendTokenToHeader()
+    );
+  }
+  getCartCount() {
+    this.getCartAPI().subscribe((res: any) => {
+      this.CartCount.next(res.length);
+    });
+  }
 }
