@@ -55,7 +55,16 @@ export class ViewproductComponent implements OnInit {
 
   addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
-      this.toast.success('Add Item to wishlist');
+      Object.assign(product, { quantity: 1 });
+      this.api.addtoCart(product).subscribe({
+        next: (res: any) => {
+          this.toast.success(res);
+          this.api.getCartCount();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     } else {
       this.toast.error('Please Login');
     }

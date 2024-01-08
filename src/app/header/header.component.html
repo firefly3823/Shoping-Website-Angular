@@ -36,7 +36,7 @@
             <form class="d-flex align-items-center" role="search">
                 <div *ngIf="!currentUserName" class="pe-3"><a routerLink="user/login" class="btn btn-secondary">LOGIN</a></div>
                 <div *ngIf="currentUserName" class="pe-3">
-                    <h5 class="text-light  mt-2 text-capitalize">{{currentUserName}}</h5>
+                    <h5 class="text-light mt-2 text-capitalize">{{currentUserName}}</h5>
                 </div>
                 <div *ngIf="currentUserName" class="pe-3">
                     <button (click)="logout()" class="btn btn-secondary">LOGOUT</button>

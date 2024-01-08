@@ -29,7 +29,7 @@ exports.addtoCartControl = async (req, res) => {
 exports.getCartControl = async (req,res)=>{
     const userId = req.payload
     try{
-        const allProduct = await cart.find({userId})
+        const allProduct = await carts.find({userId})
         res.status(200).json(allProduct)
     }catch(err){
         res.status(401).json(err)

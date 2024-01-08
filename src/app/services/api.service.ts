@@ -85,7 +85,7 @@ export class ApiService {
   }
   getCartCount() {
     this.getCartAPI().subscribe((res: any) => {
-      this.CartCount.next(res.length);
+      this.CartCount.next(res.length)
     });
   }
 }

@@ -10,7 +10,7 @@ import { ApiService } from '../services/api.service';
 })
 export class HeaderComponent implements OnInit {
   currentUserName: string = '';
-  wishlistCount:number = 0
+  wishlistCount:number = 0;
   cartCount:number = 0;
   constructor(private toast: ToastServiceService, private router: Router, private api:ApiService) {}
   ngOnInit(): void {
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
       })
       this.api.CartCount.subscribe((res:any)=>{
         this.cartCount = res
+        // console.log(res)
       })
     } else {
       this.currentUserName = '';

@@ -18,37 +18,34 @@ export class AllProductsComponent implements OnInit {
   }
 
   addtoWishList(product: any) {
-    
     if (sessionStorage.getItem('token')) {
       this.api.addToWishlistAPI(product).subscribe({
-        next:(res:any)=>{
+        next: (res: any) => {
           this.toast.success(`${res.title} Added Item to wishlist`);
-          this.api.getWishcount()
+          this.api.getWishcount();
         },
-        error:(err)=>{
+        error: (err) => {
           this.toast.warning(err.error);
-        }
-      })  
+        },
+      });
     } else {
       this.toast.error('Please Login');
     }
   }
   addtoCart(product: any) {
     if (sessionStorage.getItem('token')) {
-      Object.assign(product,{quantity:1})
+      Object.assign(product, { quantity: 1 });
       this.api.addtoCart(product).subscribe({
-        next:(res:any)=>{
-                this.toast.success(res);
+        next: (res: any) => {
+          this.toast.success(res);
+          this.api.getCartCount();
         },
-        error:(err)=>{
-          console.log(err)
-        }
-      })
-
+        error: (err) => {
+          console.log(err);
+        },
+      });
     } else {
       this.toast.error('Please Login');
     }
   }
-
-
 }
