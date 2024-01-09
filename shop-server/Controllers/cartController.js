@@ -11,7 +11,7 @@ exports.addtoCartControl = async (req, res) => {
             existingProduct.quantity += 1
             existingProduct.grandTotal = existingProduct.quantity * existingProduct.price
             await existingProduct.save()
-            res.status(200).json("Item added to your cart")
+            res.status(200).json(`${existingProduct.quantity}, ${existingProduct.title} Added to cart`)
         } else {
             const newProduct = new carts({
                 id, title, price, description, images,quantity,grandTotal:price, userId
