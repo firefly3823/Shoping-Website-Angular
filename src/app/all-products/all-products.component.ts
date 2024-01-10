@@ -42,6 +42,7 @@ export class AllProductsComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
+          // this.toast.error(err)
         },
       });
     } else {

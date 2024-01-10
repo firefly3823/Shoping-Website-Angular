@@ -19,19 +19,24 @@ router.post('/user/login', userController.loginController)
 //product details
 router.get('/product/get/:id',productController.getProductDetails)
 
+
 // wishlist
 router.post('/wishlist/add',jwtMiddleware,wishListController.addToWishlistController)
-
 //get wish
 router.get('/wishlist/get',jwtMiddleware,wishListController.getWishllistController)
-
 // remove wishlist
 router.delete('/wishlist/remove/:id', jwtMiddleware, wishListController.removeWishlistContorller)
 
+
 //add to cart
 router.post('/cart/add',jwtMiddleware,cartController.addtoCartControl)
-
 //get carts
 router.get('/cart/get',jwtMiddleware,cartController.getCartControl)
+
+
+// Manage quantity in cart
+router.get('/cart/inc/:id',jwtMiddleware,cartController.incrementQuntityController)
+router.get('/cart/dec/:id', jwtMiddleware, cartController.decrementQuntityController)
+router.get('/cart/del/:id', jwtMiddleware, cartController.removeCartItem)
 
 module.exports = router

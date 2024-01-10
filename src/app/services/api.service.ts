@@ -85,7 +85,25 @@ export class ApiService {
   }
   getCartCount() {
     this.getCartAPI().subscribe((res: any) => {
-      this.CartCount.next(res.length)
+      this.CartCount.next(res.length);
     });
+  }
+  cartIncAPI(id: any) {
+    return this.http.get(
+      `${this.SERVER_URL}/cart/inc/${id}`,
+      this.appendTokenToHeader()
+    );
+  }
+  cartDecAPI(id: any) {
+    return this.http.get(
+      `${this.SERVER_URL}/cart/dec/${id}`,
+      this.appendTokenToHeader()
+    );
+  }
+  deleteCartProductAPI(id: any) {
+    return this.http.get(
+      `${this.SERVER_URL}/cart/del/${id}`,
+      this.appendTokenToHeader()
+    );
   }
 }
