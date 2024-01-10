@@ -25,7 +25,6 @@ exports.addtoCartControl = async (req, res) => {
         res.status(401).json(err)
     }
 }
-
 //get cart controller
 exports.getCartControl = async (req,res)=>{
     const userId = req.payload
@@ -55,6 +54,7 @@ exports.incrementQuntityController = async(req,res)=>{
         res.status(400).json(err)
     }
 }
+
 
 exports.decrementQuntityController = async (req, res) => {
     const { id } = req.params
