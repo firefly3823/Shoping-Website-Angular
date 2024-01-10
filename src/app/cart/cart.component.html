@@ -1,49 +1,61 @@
 <app-header></app-header>
 <!-- No product Section -->
-<div style="height: 80vh;" class="container-fluid  d-flex flex-column align-items-center justify-content-center">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-empty" width="200" height="200"
-        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-        stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-        <path d="M9 10l.01 0" />
-        <path d="M15 10l.01 0" />
-        <path d="M9 15l6 0" />
-    </svg>
-    <h3>NO PRODUCTS FOUND IN CART</h3>
-    <div><a routerLink="/allproduct" class="btn btn-secondary">ADD PRODUCTS</a></div>
-</div>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-8 ps-5">
-            <table class="table table-striped">
-                <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">ITEM</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">PRICE</th>
-                    <th scope="col">REMOVE</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>Shirt</th>
-                        <th>test</th>
-                        <th>1500</th>
-                        <th><i class="fa-solid fa-square-minus fa-xl" style="color: #35373b;"></i></th>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
-        <div class="col-lg-4 d-flex justify-content-center">
-            
-            <app-checkout></app-checkout>
-
-
-        </div>
+<div style="min-height: 60dvh;" class="">
+    <div *ngIf="cartItems===0" style="height: 80vh;" class="container-fluid  d-flex flex-column align-items-center justify-content-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mood-empty" width="200" height="200"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+            <path d="M9 10l.01 0" />
+            <path d="M15 10l.01 0" />
+            <path d="M9 15l6 0" />
+        </svg>
+        <h3>NO PRODUCTS FOUND IN CART</h3>
+        <div><a routerLink="/allproduct" class="btn btn-secondary">ADD PRODUCTS</a></div>
     </div>
     
-
+    <div *ngIf="cartItems.length>0" class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-lg-8 ps-5">
+                <table class="table table-striped">
+                    <thead>
+                        <th class="fw-bolder fs-4 text-center" scope="col">#</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">ITEM</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">NAME</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">PRICE</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">QUANTITY</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">TOTAL</th>
+                        <th class="fw-bolder fs-4 text-center" scope="col">REMOVE</th>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center fw-bolder" *ngFor="let product of cartItems;let i = index">
+                            <td>{{i+1}}</td>
+                            <td><img class="img-fluid" width="120px" [src]="product.images[0]" alt=""></td>
+                            <td>{{product.title}}</td>
+                            <td >$ {{product.price}}</td>
+                            <td class="">
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn fw-bolder fs-3">-</button>
+                                    <input class="form-control text-center w-25" id="inputQuantity"  type="num" [value]="product.quantity">
+                                    <button class="btn fw-bolder fs-3">+</button>
+                                </div>
+                            </td>
+                            <td>$ {{product.grandTotal}}</td>
+                            <td><button class="btn"><i class="fa-solid fa-square-minus fa-xl" style="color: #35373b;"></i></button></td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-center">
+                
+                <app-checkout></app-checkout>
+    
+    
+            </div>
+        </div>
+        
+    
+    </div>
 </div>
