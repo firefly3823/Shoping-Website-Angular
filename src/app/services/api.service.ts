@@ -48,6 +48,7 @@ export class ApiService {
 
   getProduct(id: any) {
     return this.http.get(`${this.AltServer_url}/${id}`);
+    // return this.http.get(`${this.SERVER_URL}/product/get/${id}`);
   }
 
   getwishlist() {

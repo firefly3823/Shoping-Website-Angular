@@ -29,7 +29,7 @@ export class ViewproductComponent implements OnInit {
     this.api.getProduct(id).subscribe({
       next: (res: any) => {
         this.product = res;
-        // console.log(this.product);
+        // console.log(this.product.images[0]);
       },
       error: (err: any) => {
         console.log(err);
