@@ -15,18 +15,18 @@
         <div class="collapse navbar-collapse p-2" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row justify-content-end">
                 <li class="nav-item pe-4">
-                    <button *ngIf="!currentUserName" routerLink="user/login" class="btn btn-secondary">Cart</button>
-                    <button *ngIf="currentUserName" routerLink="user/cart" class="btn btn-secondary position-relative">Cart
+                    <button *ngIf="!currentUserName" routerLink="/user/login" class="btn btn-secondary">Cart</button>
+                    <button *ngIf="currentUserName" routerLink="/user/cart" class="btn btn-secondary position-relative">Cart
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                         {{cartCount}}
                     </span>
                 </button>
                 </li>
                 <li class="nav-item">
-                    <button *ngIf="!currentUserName" routerLink="user/login" class="btn btn-secondary">WishList
+                    <button *ngIf="!currentUserName" routerLink="/user/login" class="btn btn-secondary">WishList
                     
                     </button>
-                    <button *ngIf="currentUserName" routerLink="user/wishlist" class="btn btn-secondary position-relative">WishList
+                    <button *ngIf="currentUserName" routerLink="/user/wishlist" class="btn btn-secondary position-relative">WishList
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                         {{wishlistCount}}
                     </span>
@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <form class="d-flex align-items-center" role="search">
-                <div *ngIf="!currentUserName" class="pe-3"><a routerLink="user/login" class="btn btn-secondary">LOGIN</a></div>
+                <div *ngIf="!currentUserName" class="pe-3"><a routerLink="/user/login" class="btn btn-secondary">LOGIN</a></div>
                 <div *ngIf="currentUserName" class="pe-3">
                     <h5 class="text-light mt-2 text-capitalize">{{currentUserName}}</h5>
                 </div>
