@@ -10,7 +10,7 @@ import { ToastServiceService } from '../services/toast-service.service';
 })
 export class CartComponent implements OnInit {
   cartItems: any = [];
-  TotalPrice: number = 0;
+  TotalPrice:any = 0;
   constructor(private api: ApiService, private toast: ToastServiceService) {}
   ngOnInit(): void {
     if (sessionStorage.getItem('token')) {
@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
           ?.map((item: any) => item.grandTotal)
           .reduce((amt1: any, amt2: any) => amt1 + amt2)
       );
+      sessionStorage.setItem('total',this.TotalPrice)
     }
   }
   incItem(id: any) {

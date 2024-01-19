@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPayPalModule, NgxPaypalComponent } from 'ngx-paypal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     CheckoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ToastrModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule
 
   
   ],
