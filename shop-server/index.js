@@ -14,5 +14,5 @@ shop_Server.listen(PORT,()=>{
 })
 
 shop_Server.get('/',(req,res)=>{
-    res.status(200).send("<h5 style='color:red'>Shop Server is Online <a href='https://shoping-website-angular.vercel.app'>GO TO SHOP</a> </h5>")
+    res.status(200).send("<h5 style='color:red;text-align:'center'>Shop Server is Online <a href='https://shoping-website-angular.vercel.app'>GO TO SHOP</a> </h5>")
 })
