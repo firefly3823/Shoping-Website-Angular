@@ -43,10 +43,12 @@
                     <div><button (click)="back()"  class="btn btn-outline-dark mt-auto">Edit</button>
                     </div>
                     <div><button (click)="proceedtoPay()" class="btn btn-outline-dark mt-auto">Proceed to Payment</button>
+                        
                     </div>
                 </div>
             </div>
             <div *ngIf="proceedtoPayStatus==true" class="payment">
+                
                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
             </div>
         </div>
