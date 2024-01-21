@@ -9,7 +9,6 @@ import { ToastServiceService } from '../services/toast-service.service';
 })
 export class AllProductsComponent implements OnInit {
   allProduct: any = [];
-  imageUrl: string = "";
   constructor(private api: ApiService, private toast: ToastServiceService) {}
   ngOnInit(): void {
     this.api.getAllProduct().subscribe((res: any) => {

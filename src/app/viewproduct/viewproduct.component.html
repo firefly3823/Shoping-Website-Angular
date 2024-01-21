@@ -7,7 +7,7 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <div *ngFor="let image of product.images;let i=index" class="carousel-item" [ngClass]="{'carousel-item': i!=0}">
-                            <img routerLink="/view/{{product.id}}" class="card-img-top" [src]="image&& image" alt="..." />
+                            <img routerLink="/view/{{product.id}}" (error)="errorHandler($event)" class="card-img-top" [src]="image&& image" alt="..." />
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

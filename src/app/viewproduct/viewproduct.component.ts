@@ -25,6 +25,11 @@ export class ViewproductComponent implements OnInit {
       this.getProductDetail(id);
     });
   }
+  errorHandler(event: any) {
+    console.debug(event);
+    event.target.src =
+      'https://dummyimage.com/500x500/4d484d/fcfcfc&text=Image+Error';
+  }
   getProductDetail(id: any) {
     this.api.getProduct(id).subscribe({
       next: (res: any) => {
