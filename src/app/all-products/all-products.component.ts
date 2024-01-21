@@ -9,7 +9,7 @@ import { ToastServiceService } from '../services/toast-service.service';
 })
 export class AllProductsComponent implements OnInit {
   allProduct: any = [];
-  
+  imageUrl: string = "";
   constructor(private api: ApiService, private toast: ToastServiceService) {}
   ngOnInit(): void {
     this.api.getAllProduct().subscribe((res: any) => {
@@ -17,6 +17,11 @@ export class AllProductsComponent implements OnInit {
       // console.log(res);
       // this.allProduct.map((item: any) => console.log(item.images));
     });
+  }
+  errorHandler(event: any) {
+    console.debug(event);
+    event.target.src =
+      'https://dummyimage.com/500x500/4d484d/fcfcfc&text=Image+Error';
   }
 
   addtoWishList(product: any) {
