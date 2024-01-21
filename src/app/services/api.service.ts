@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  SERVER_URL = 'http://localhost:3000';
+  SERVER_URL = 'https://shopserverangular.onrender.com';
   AltServer_url = 'https://api.escuelajs.co/api/v1/products';
   wishlistCount = new BehaviorSubject(0);
   CartCount = new BehaviorSubject(0);
